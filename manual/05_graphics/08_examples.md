@@ -1,6 +1,6 @@
 # 5.8 Примеры графики
 
-> **Навигация:** [← 5.7 Double buffering](07_double_buffer.md) | [Оглавление](../README.md) | [6.1 AY-3-8910 →](../06_audio/01_ay_3_8910.md)
+> **Навигация:** [← 5.7 Double buffering](07_double_buffer.md) | [Оглавление](../README.md) | [5.9 Текстовый режим →](09_text_mode.md)
 
 ---
 

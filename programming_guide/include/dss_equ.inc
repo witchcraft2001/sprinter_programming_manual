@@ -1,91 +1,91 @@
 ; DSS call numbers (taken from dss_equ.asm)
 
-Dss.Rst         EQU     10h
+Dss.Rst         EQU     10h    ; RST vector used by DSS dispatcher
 
-Dss.Version     EQU     00h
-Dss.ChDisk      EQU     01h
-Dss.CurDisk     EQU     02h
-Dss.DskInfo     EQU     03h
-Dss.BootDsk     EQU     09h
+Dss.Version     EQU     00h    ; query DSS version (D/E = major/minor)
+Dss.ChDisk      EQU     01h    ; change current logical drive
+Dss.CurDisk     EQU     02h    ; get active drive id
+Dss.DskInfo     EQU     03h    ; fetch free/total clusters info
+Dss.BootDsk     EQU     09h    ; return system (boot) drive
 
 ; Files
-Dss.Create      EQU     0Ah
-Dss.Create_N    EQU     0Bh
-Dss.Delete      EQU     0Eh
-Dss.Rename      EQU     10h
-Dss.Open        EQU     11h
-Dss.Close       EQU     12h
-Dss.Read        EQU     13h
-Dss.Write       EQU     14h
-Dss.Move_FP     EQU     15h
-Dss.Attrib      EQU     16h
-Dss.Get_D_T     EQU     17h
-Dss.Put_D_T     EQU     18h
-Dss.F_First     EQU     19h
-Dss.F_Next      EQU     1Ah
-Dss.MkDir       EQU     1Bh
-Dss.RmDir       EQU     1Ch
-Dss.ChDir       EQU     1Dh
-Dss.CurDir      EQU     1Eh
-Dss.SysTime     EQU     21h
-Dss.SetTime     EQU     22h
+Dss.Create      EQU     0Ah    ; create/overwrite file by name
+Dss.Create_N    EQU     0Bh    ; create new file only if absent
+Dss.Delete      EQU     0Eh    ; delete file or empty dir
+Dss.Rename      EQU     10h    ; rename file/directory
+Dss.Open        EQU     11h    ; open existing file
+Dss.Close       EQU     12h    ; close handle
+Dss.Read        EQU     13h    ; read bytes from handle
+Dss.Write       EQU     14h    ; write bytes to handle
+Dss.Move_FP     EQU     15h    ; move file pointer (seek)
+Dss.Attrib      EQU     16h    ; change/read file attributes
+Dss.Get_D_T     EQU     17h    ; read time/date stamp
+Dss.Put_D_T     EQU     18h    ; write time/date stamp
+Dss.F_First     EQU     19h    ; start directory search
+Dss.F_Next      EQU     1Ah    ; continue directory search
+Dss.MkDir       EQU     1Bh    ; create directory
+Dss.RmDir       EQU     1Ch    ; remove directory
+Dss.ChDir       EQU     1Dh    ; change current directory
+Dss.CurDir      EQU     1Eh    ; get current directory path
+Dss.SysTime     EQU     21h    ; read RTC/system time
+Dss.SetTime     EQU     22h    ; set RTC/system time
 
 ; Keyboard
-Dss.WaitKey     EQU     30h
-Dss.ScanKey     EQU     31h
-Dss.EchoKey     EQU     32h
-Dss.CtrlKey     EQU     33h
-Dss.K_Clear     EQU     35h
-Dss.K_Setup     EQU     36h
-Dss.TestKey     EQU     37h
+Dss.WaitKey     EQU     30h    ; blocking key read
+Dss.ScanKey     EQU     31h    ; get key with modifiers
+Dss.EchoKey     EQU     32h    ; print key to TTY
+Dss.CtrlKey     EQU     33h    ; control keyboard vars
+Dss.K_Clear     EQU     35h    ; clear keyboard buffer
+Dss.K_Setup     EQU     36h    ; install keyboard handler
+Dss.TestKey     EQU     37h    ; non-blocking keyboard test
 
 ; Memory
-Dss.SetWin      EQU     38h
-Dss.SetWin1     EQU     39h
-Dss.SetWin2     EQU     3Ah
-Dss.SetWin3     EQU     3Bh
-Dss.InfoMem     EQU     3Ch
-Dss.GetMem      EQU     3Dh
-Dss.FreeMem     EQU     3Eh
-Dss.SetMem      EQU     3Fh
+Dss.SetWin      EQU     38h    ; connect arbitrary page to window
+Dss.SetWin1     EQU     39h    ; connect page to window #4000
+Dss.SetWin2     EQU     3Ah    ; connect page to window #8000
+Dss.SetWin3     EQU     3Bh    ; connect page to window #C000
+Dss.InfoMem     EQU     3Ch    ; get block info by id
+Dss.GetMem      EQU     3Dh    ; allocate block (N pages)
+Dss.FreeMem     EQU     3Eh    ; free block by id
+Dss.SetMem      EQU     3Fh    ; mark block with owner id
 
 ; Execution
-Dss.Exec        EQU     40h
-Dss.Exit        EQU     41h
-Dss.Wait        EQU     42h
+Dss.Exec        EQU     40h    ; load/execute EXE file
+Dss.Exit        EQU     41h    ; terminate current task
+Dss.Wait        EQU     42h    ; wait for child termination
 
 ; Strings / environment
-Dss.GSwitch     EQU     43h
-Dss.DosName     EQU     44h
-Dss.Ex_Path     EQU     45h
-Dss.Environ     EQU     46h
-Dss.AppInfo     EQU     47h
+Dss.GSwitch     EQU     43h    ; parse command line switch
+Dss.DosName     EQU     44h    ; convert to/from 8.3 name
+Dss.Ex_Path     EQU     45h    ; read command line buffer
+Dss.Environ     EQU     46h    ; access environment variables
+Dss.AppInfo     EQU     47h    ; get parent/app descriptor
 
 ; Screen
-Dss.SetVMod     EQU     50h
-Dss.GetVMod     EQU     51h
-Dss.Locate      EQU     52h
-Dss.Cursor      EQU     53h
-Dss.SelPage     EQU     54h
-Dss.Scroll      EQU     55h
-Dss.Clear       EQU     56h
-Dss.RdChar      EQU     57h
-Dss.WrChar      EQU     58h
-Dss.WinCopy     EQU     59h
-Dss.WinRest     EQU     5Ah
-Dss.PutChar     EQU     5Bh
-Dss.PChars      EQU     5Ch
-Dss.Print       EQU     5Fh
+Dss.SetVMod     EQU     50h    ; set video mode (text/gfx)
+Dss.GetVMod     EQU     51h    ; read current video mode
+Dss.Locate      EQU     52h    ; move text cursor
+Dss.Cursor      EQU     53h    ; enable/disable cursor
+Dss.SelPage     EQU     54h    ; select text page
+Dss.Scroll      EQU     55h    ; scroll window
+Dss.Clear       EQU     56h    ; clear window/screen
+Dss.RdChar      EQU     57h    ; read char/attr from screen
+Dss.WrChar      EQU     58h    ; write char/attr
+Dss.WinCopy     EQU     59h    ; copy window to buffer
+Dss.WinRest     EQU     5Ah    ; restore window from buffer
+Dss.PutChar     EQU     5Bh    ; print char with attribute
+Dss.PChars      EQU     5Ch    ; print ASCIIZ string
+Dss.Print       EQU     5Fh    ; raw printer output
 
 ; Helpers
-FileMode.RW     EQU     00h
-FileMode.Read   EQU     01h
-FileMode.Write  EQU     02h
+FileMode.RW       EQU   00h    ; open for read/write
+FileMode.Read     EQU   01h    ; open read-only
+FileMode.Write    EQU   02h    ; open write-only
 
-FileAttrib.Normal EQU   00h
-FileAttrib.RDOnly EQU   01h
-FileAttrib.Hidden EQU   02h
-FileAttrib.System EQU   04h
-FileAttrib.Label  EQU   08h
-FileAttrib.Dir    EQU   10h
-FileAttrib.Arch   EQU   20h
+FileAttrib.Normal EQU   00h    ; regular file
+FileAttrib.RDOnly EQU   01h    ; read-only
+FileAttrib.Hidden EQU   02h    ; hidden entry
+FileAttrib.System EQU   04h    ; system file
+FileAttrib.Label  EQU   08h    ; volume label
+FileAttrib.Dir    EQU   10h    ; directory
+FileAttrib.Arch   EQU   20h    ; archive bit

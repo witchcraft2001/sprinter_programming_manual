@@ -10,8 +10,10 @@
 6. [accelerator.md](accelerator.md) — аппаратный ускоритель, таблица опкодов, практические шаблоны на ASM/C.
 7. [dss_api.md](dss_api.md) — полный список вызовов RST #10 и практические примеры (окна, файлы, память).
 8. [bios_api.md](bios_api.md) — вызовы BIOS (RST #08/30), мышь, окна, диски, смена конфигураций.
-9. [asm_patterns.md](asm_patterns.md) — паттерны для Z80 ASM (инициализация, CallDss, двойная буферизация, ISA, клавиатура/мышь).
-10. [c_toolchain.md](c_toolchain.md) — работа с SDCC/sjasmplus в ZX‑Sprinter SDK, заметки про z88dk и CP/M‑инструменты (SolidC).
+9. [isa.md](isa.md) — работа с ISA-слотами: включение окон, управление AEN/RESET, пример чтения портов.
+10. [keyboard.md](keyboard.md) — ZX-матрица, AT-клавиатура через Z84C15, обработка сканкодов и готовый include.
+11. [asm_patterns.md](asm_patterns.md) — паттерны для Z80 ASM (инициализация, CallDss, двойная буферизация, ISA, клавиатура/мышь).
+12. [c_toolchain.md](c_toolchain.md) — работа с SDCC/sjasmplus в ZX‑Sprinter SDK, заметки про z88dk и CP/M‑инструменты (SolidC).
 11. [dss_exe.md](dss_exe.md) — структура EXE-файлов Estex, поля заголовка, шаблон и минимальный HelloWorld.
 
 Каждый раздел снабжён ссылками на исходные файлы и строки, откуда взята информация, чтобы можно было быстро перейти к первоисточнику.

@@ -89,3 +89,38 @@ FileAttrib.System EQU   04h    ; system file
 FileAttrib.Label  EQU   08h    ; volume label
 FileAttrib.Dir    EQU   10h    ; directory
 FileAttrib.Arch   EQU   20h    ; archive bit
+
+; DSS error codes (from Sprinter Programming guide, page 27)
+Dss.Err.Success        EQU 00h    ; success (CF reset)
+Dss.Err.InvFunc        EQU 01h    ; invalid function number
+Dss.Err.InvDrive       EQU 02h    ; invalid drive letter
+Dss.Err.FileNotFound   EQU 03h    ; file not found
+Dss.Err.PathNotFound   EQU 04h    ; path not found
+Dss.Err.InvHandle      EQU 05h    ; invalid file handle
+Dss.Err.TooManyOpen    EQU 06h    ; too many open files
+Dss.Err.FileExists     EQU 07h    ; file already exists
+Dss.Err.ReadOnly       EQU 08h    ; write attempt to read-only file
+Dss.Err.RootOverflow   EQU 09h    ; root directory overflow
+Dss.Err.NoSpace        EQU 0Ah    ; no free disk space
+Dss.Err.DirNotEmpty    EQU 0Bh    ; directory not empty
+Dss.Err.RemoveCurrDir  EQU 0Ch    ; attempt to remove current dir
+Dss.Err.InvMedia       EQU 0Dh    ; invalid media type
+Dss.Err.InvOp          EQU 0Eh    ; invalid operation
+Dss.Err.DirExists      EQU 0Fh    ; directory already exists
+Dss.Err.InvFilename    EQU 10h    ; invalid filename
+Dss.Err.InvExe         EQU 11h    ; invalid EXE header
+Dss.Err.UnsupportedExe EQU 12h    ; unsupported EXE format
+Dss.Err.Permission     EQU 13h    ; permission denied
+Dss.Err.NotReady       EQU 14h    ; device not ready
+Dss.Err.SeekError      EQU 15h    ; seek error
+Dss.Err.SectorNotFound EQU 16h    ; sector not found
+Dss.Err.CrcError       EQU 17h    ; CRC error
+Dss.Err.WriteProtect   EQU 18h    ; write protected media
+Dss.Err.ReadError      EQU 19h    ; read error
+Dss.Err.WriteError     EQU 1Ah    ; write error
+Dss.Err.DriveFailure   EQU 1Bh    ; drive failure
+Dss.Err.Unknown28      EQU 1Ch    ; reserved / unknown
+Dss.Err.Unknown29      EQU 1Dh    ; reserved / unknown
+Dss.Err.NoFreeMemory   EQU 1Eh    ; not enough memory pages
+Dss.Err.InvMemBlock    EQU 1Fh    ; invalid memory block ID
+Dss.Err.Unknown32      EQU 20h    ; reserved / unknown

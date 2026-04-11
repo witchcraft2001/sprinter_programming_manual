@@ -12,6 +12,11 @@
 | [accelerator.md](accelerator.md) | Аппаратный ускоритель Z80: режимы, декодирование инструкций, внутренние регистры, взаимодействие с IDE/видео |
 | [video-memory.md](video-memory.md) | Организация видеопамяти, режимы Sprinter/ZX, адресация, регистры MODE*, сигналы DRAM |
 | [peripherals.md](peripherals.md) | Клавиатура, мышь, аудио (AY, Covox/DMA), IDE, FDD, CMOS, порты управления |
+| [flash.md](flash.md) | Управление Flash/BIOS: страницы, регистры ROM_RG/XACS, алгоритмы чтения и программирования |
+| [color-palette.md](color-palette.md) | Цветовая палитра: конвейер DCOL→BRVA→RBRVA→ZX_COL, режимы 320/640, ZX-атрибуты, бордюр |
+| [covox-dma.md](covox-dma.md) | Covox/DMA-аудио: CBL-буфер, частоты, стерео, 16-битный режим, I²S выход |
+| [video-timing.md](video-timing.md) | Видеотайминги: счётчики CT/CTH/CTV, VCM-машина состояний, адресация VRAM, BLANK/INTT |
+| [hidden-features.md](hidden-features.md) | Скрытые возможности: VGA_SWITCH, ALT_ACC, FN_ACC, TURBO, SOFT_RESET, AY стерео |
 
 ## Быстрый справочник по портам
 

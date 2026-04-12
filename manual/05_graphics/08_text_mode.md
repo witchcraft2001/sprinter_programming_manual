@@ -1,6 +1,6 @@
-# 5.9 Текстовый режим 80×32
+# 5.8 Текстовый режим 80×32
 
-> **Навигация:** [← 5.8 Примеры графики](08_examples.md) | [Оглавление](../README.md) | [6.1 AY-3-8910 →](../06_audio/01_ay_3_8910.md)
+> **Навигация:** [← 5.7 Double buffering](07_double_buffer.md) | [Оглавление](../README.md) | [5.9 Примеры графики →](09_examples.md)
 
 ---
 
@@ -12,9 +12,10 @@
 
 Это основной режим для работы таких приложений как:
 - **Sprinter TextEditor** ([https://github.com/witchcraft2001/sprinter-texteditor](https://github.com/witchcraft2001/sprinter-texteditor))
-- **FlexNavigator** (файловый менеджер)
 - Командная оболочка DSS
 - Утилиты SETUP, форматирования, отладки
+
+> **Замечание:** FlexNavigator ([https://github.com/witchcraft2001/flexnavigator](https://github.com/witchcraft2001/flexnavigator)) — это пример приложения, использующего **графический** режим 320×256 8bpp для отрисовки окон и текста собственными средствами (не через DSS text API).
 
 ---
 
@@ -333,5 +334,5 @@ DrawFrame:
 | Константы DSS text API | `espprobe/dss_equ.asm` — `Dss.Locate`, `Dss.PChars` и т. д. |
 | Реализация в эмуляторе | `sprintem/bios.cpp` — `Estex()` case `0x50`–`0x5C` |
 | Sprinter TextEditor | https://github.com/witchcraft2001/sprinter-texteditor |
-| FlexNavigator | https://github.com/witchcraft2001/flexnavigator |
+| FlexNavigator (графический GUI) | https://github.com/witchcraft2001/flexnavigator |
 | BIOS printing routines | `sprintem/bios.cpp` — `Bios()` case `0x81`–`0x8E` |

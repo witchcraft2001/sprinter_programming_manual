@@ -60,8 +60,8 @@
 | [5.5 Палитра](05_graphics/05_palette.md) | 256 цветов, порты #89/#A4, эффекты |
 | [5.6 Акселератор](05_graphics/06_accelerator.md) | LD r,r команды, блочные операции |
 | [5.7 Double buffering](05_graphics/07_double_buffer.md) | RGMOD flip, VSync синхронизация |
-| [5.8 Примеры графики](05_graphics/08_examples.md) | Пиксели, линии, спрайты, анимация |
-| [5.9 Текстовый режим 80×32](05_graphics/09_text_mode.md) | DSS text API, псевдографика, рамки |
+| [5.8 Текстовый режим 80×32](05_graphics/08_text_mode.md) | DSS text API, псевдографика, рамки |
+| [5.9 Примеры графики](05_graphics/09_examples.md) | Пиксели, линии, спрайты, анимация |
 
 ### 06. Звук
 

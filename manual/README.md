@@ -96,10 +96,11 @@
 
 | Раздел | Описание |
 |--------|---------|
-| [9.1 Прерывания](09_advanced/01_interrupts.md) | Все источники INT, формула INT_X, проблема клавиатуры и тайминга, CTC, CBL, NMI, IM2 |
+| [9.1 Прерывания](09_advanced/01_interrupts.md) | Источники INT, формула INT_X, IM1/IM2, CTC, CBL, NMI |
 | [9.2 Turbo](09_advanced/02_turbo.md) | 7/21 МГц, wait states, оптимизация |
 | [9.3 Скрытые возможности](09_advanced/03_hidden_features.md) | SC, CNF, PN, FN_ACC, NMI |
 | [9.4 ZX совместимость](09_advanced/04_zx_compat.md) | Spectrum, Pentagon, Scorpion, TRD/SNA |
+| [9.5 VSync практика](09_advanced/05_vsync_practice.md) | Джиттер клавиатуры, tearing, waitVsync, SDK обработчик, CTC+VSync |
 
 ### 10. Уроки (туториалы)
 

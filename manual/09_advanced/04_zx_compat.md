@@ -1,6 +1,6 @@
 # 9.4 ZX Spectrum-совместимость
 
-> **Навигация:** [← 9.3 Скрытые возможности](03_hidden_features.md) | [Оглавление](../README.md) | [10.1 Hello World →](../10_tutorials/01_hello_world.md)
+> **Навигация:** [← 9.3 Скрытые возможности](03_hidden_features.md) | [Оглавление](../README.md) | [9.5 VSync практика →](05_vsync_practice.md)
 
 ---
 

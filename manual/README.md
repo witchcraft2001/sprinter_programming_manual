@@ -24,7 +24,7 @@
 |--------|---------|
 | [2.1 Окна памяти](02_memory/01_windows.md) | EmmWin.P0–P3, банкинг, страницы, SavePage/RestorePage |
 | [2.2 DCP маппер](02_memory/02_dcp_mapper.md) | 256×16-бит LUT, TYPE поле, wait states, системные регистры |
-| [2.3 Кэш и wait states](02_memory/03_cache.md) | Тайминги RAM/ROM/VRAM, оптимизация |
+| [2.3 Кэш-ОЗУ (SRAM) и wait states](02_memory/03_cache.md) | SRAM 128 КБ, 0 waits в турбо, I/O и memory waits |
 | [2.4 Flash / ROM](02_memory/04_flash.md) | Страницы ROM, порт #8F, JEDEC программирование |
 | [2.5 Примеры](02_memory/05_examples.md) | SavePage, CopyPage, ShowBitmap, шаблон EXE |
 

@@ -193,7 +193,7 @@ ChangeVideoPage:
 SDK (см. `zx-sprinter-sdk/sdk/src/sprinter/lib_startup.asm`, `_clear_screen`, `_swap_screen`) всегда завершает работу с PORT_Y командой:
 
 ```asm
-        ld      a, $C0                  ; 192 — за нижним краем
+        ld      a, #C0                  ; 192 — за нижним краем
         out     (PORT_Y), a
 ```
 
@@ -210,7 +210,7 @@ SDK (см. `zx-sprinter-sdk/sdk/src/sprinter/lib_startup.asm`, `_clear_screen`, 
         ei
 
         ; ОБЯЗАТЕЛЬНО: увести PORT_Y в невидимую зону
-        ld      a, $C0
+        ld      a, #C0
         out     (PORT_Y), a
 ```
 
@@ -232,11 +232,11 @@ _clear_screen:
         push    af
         ld      a, VPAGE_TILES : out (PAGE1), a
 
-        ld      hl, $4160               ; начальный адрес в VRAM
+        ld      hl, #4160               ; начальный адрес в VRAM
         ld      a, (_screenActive)
         and     1
         jr      nz, .m1
-        ld      hl, $4020
+        ld      hl, #4020
 .m1:    ld      a, 32
         out     (PORT_Y), a             ; стартовая строка
 
@@ -252,12 +252,12 @@ _clear_screen:
         exa : in a, (PORT_Y) : inc a : out (PORT_Y), a : exa
         djnz    .lp1
 
-        ld      a, $C0 : out (PORT_Y), a    ; <-- увести PORT_Y в безопасную зону
+        ld      a, #C0 : out (PORT_Y), a    ; <-- увести PORT_Y в безопасную зону
         MRestoreMemMap12
         ret
 ```
 
-Обратите внимание на `ld a, $C0 : out (PORT_Y), a` в конце — это и есть тот самый «задвигать повыше».
+Обратите внимание на `ld a, #C0 : out (PORT_Y), a` в конце — это и есть тот самый «задвигать повыше».
 
 ---
 

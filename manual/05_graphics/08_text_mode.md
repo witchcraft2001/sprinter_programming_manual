@@ -15,7 +15,7 @@
 - Командная оболочка DSS
 - Утилиты SETUP, форматирования, отладки
 
-> **Замечание:** FlexNavigator ([https://github.com/witchcraft2001/flexnavigator](https://github.com/witchcraft2001/flexnavigator)) — это пример приложения, использующего **графический** режим 320×256 8bpp для отрисовки окон и текста собственными средствами (не через DSS text API).
+> **Замечание:** FlexNavigator ([https://github.com/witchcraft2001/flexnavigator](https://github.com/witchcraft2001/flexnavigator)) — это пример приложения, использующего **графический** режим 640×256 4bpp (16 цветов) для собственной отрисовки окон и текста без DSS text API.
 
 ---
 

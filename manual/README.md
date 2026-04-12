@@ -56,8 +56,8 @@
 | [5.1 Обзор видео](05_graphics/01_video_overview.md) | VRAM, режимы, PORT_Y безопасность, основы |
 | [5.2 ZX режим](05_graphics/02_zx_mode.md) | 256×192, атрибуты, бордюр |
 | [5.3 Режим 320×256](05_graphics/03_mode1_320.md) | 8bpp линейный, основной для игр |
-| [5.4 Режим 640×512](05_graphics/04_mode2_640.md) | 4bpp для CAD и высокого разрешения |
-| [5.5 Палитра](05_graphics/05_palette.md) | 256 цветов, порты #89/#A4, эффекты |
+| [5.4 Режим 640×256](05_graphics/04_mode2_640.md) | 4bpp для GUI в высоком разрешении |
+| [5.5 Палитра](05_graphics/05_palette.md) | 256 цветов из 16млн., порты #89/#A4, эффекты |
 | [5.6 Акселератор](05_graphics/06_accelerator.md) | LD r,r команды, блочные операции |
 | [5.7 Double buffering](05_graphics/07_double_buffer.md) | RGMOD flip, VSync синхронизация |
 | [5.8 Текстовый режим 80×32](05_graphics/08_text_mode.md) | DSS text API, псевдографика, рамки |

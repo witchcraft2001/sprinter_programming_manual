@@ -96,7 +96,7 @@
 
 | Раздел | Описание |
 |--------|---------|
-| [9.1 Прерывания](09_advanced/01_interrupts.md) | IM1/IM2, VSync, таблица векторов, обработчики |
+| [9.1 Прерывания](09_advanced/01_interrupts.md) | Все источники INT, формула INT_X, проблема клавиатуры и тайминга, CTC, CBL, NMI, IM2 |
 | [9.2 Turbo](09_advanced/02_turbo.md) | 7/21 МГц, wait states, оптимизация |
 | [9.3 Скрытые возможности](09_advanced/03_hidden_features.md) | SC, CNF, PN, FN_ACC, NMI |
 | [9.4 ZX совместимость](09_advanced/04_zx_compat.md) | Spectrum, Pentagon, Scorpion, TRD/SNA |

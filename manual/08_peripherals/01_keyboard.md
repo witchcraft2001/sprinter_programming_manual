@@ -369,13 +369,18 @@ KeyPressed:
 ; Вход:
 ;   HL = адрес буфера
 ; Выход:
+;   строка не длиннее READLINE_MAX байт
 ;   CF=0 - строка готова, 0-terminated
 ;   CF=1 - отмена по Esc
+
+Dss.WaitKey      EQU #30
+Dss.PutChar      EQU #5B
+READLINE_MAX     EQU 63
 
 ReadLine:
         ld      b, 0
 .loop:
-        ld      c, #30              ; WaitKey
+        ld      c, Dss.WaitKey
         rst     #10
 
         cp      27                  ; Esc
@@ -386,14 +391,19 @@ ReadLine:
         jr      z, .backspace
         cp      32
         jr      c, .loop            ; пропустить управляющие
+        ld      e, a                ; сохранить вводимый символ
+        ld      a, b
+        cp      READLINE_MAX
+        jr      nc, .loop           ; буфер заполнен, игнорировать ввод
 
+        ld      a, e
         ld      (hl), a
         inc     hl
         inc     b
 
         push    bc
         push    hl
-        ld      c, #5B              ; PutChar
+        ld      c, Dss.PutChar
         rst     #10
         pop     hl
         pop     bc
@@ -409,13 +419,13 @@ ReadLine:
 
         push    bc
         ld      a, 8
-        ld      c, #5B
+        ld      c, Dss.PutChar
         rst     #10
         ld      a, ' '
-        ld      c, #5B
+        ld      c, Dss.PutChar
         rst     #10
         ld      a, 8
-        ld      c, #5B
+        ld      c, Dss.PutChar
         rst     #10
         pop     bc
         jr      .loop

@@ -45,7 +45,7 @@ struct SprintEXE {
 
 ## Шаблон EXE в sjasmplus
 
-### Вариант 1: минимальный (из flappybird)
+### Вариант 1: компактный исторический шаблон
 
 ```asm
         org     #8100-512           ; #7F00
@@ -61,6 +61,9 @@ struct SprintEXE {
 begin:
         ; ... код программы ...
 ```
+
+Этот вариант повторяет старый компактный шаблон из существующих проектов.
+Для новой программы удобнее и понятнее использовать явный вариант ниже.
 
 ### Вариант 2: явный
 
@@ -111,12 +114,17 @@ DSS запускает EXE в несколько шагов:
 ```asm
 Dss.Exec        EQU #40
 
-; Запустить вложенную программу
+; Запустить EXE-программу и дождаться результата
         ld      hl, child_cmd
         ld      c, Dss.Exec
         rst     #10
         jr      c, .error
         ; Программа завершилась, управление вернулось
+        ret
+
+.error:
+        ; A = код ошибки запуска
+        ret
 
 child_cmd:  db  "CHILD.EXE arg1 arg2", 0
 ```
@@ -164,6 +172,8 @@ child_cmd:  db  "CHILD.EXE arg1 arg2", 0
 ### Пример: печать аргументов
 
 ```asm
+Dss.PutChar     EQU #5B
+
 PrintArgs:
         ld      hl, #8080
         ld      a, (hl)             ; длина
@@ -178,7 +188,7 @@ PrintArgs:
         ret     z
         push    hl
         push    bc
-        ld      c, #5B              ; DSS PUTCHAR
+        ld      c, Dss.PutChar
         rst     #10
         pop     bc
         pop     hl

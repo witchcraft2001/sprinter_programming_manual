@@ -387,11 +387,14 @@ ReadMouseDelta:
 Ниже простой цикл, который корректно отслеживает новые нажатия кнопок.
 
 ```asm
+Bios.Mouse_Refresh    EQU #83
+Bios.Mouse_Read       EQU #03
+
 MouseLoop:
-        ld      c, #83              ; refresh
+        ld      c, Bios.Mouse_Refresh
         rst     #30
 
-        ld      c, #03              ; read state
+        ld      c, Bios.Mouse_Read
         rst     #30
 
         ld      (mouse_x), hl
@@ -411,6 +414,12 @@ MouseLoop:
 
         halt
         jr      MouseLoop
+
+OnLeftPress:
+        ret
+
+OnRightPress:
+        ret
 
 prev_buttons:  db 0
 mouse_x:       dw 0

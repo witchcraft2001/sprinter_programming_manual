@@ -115,9 +115,9 @@ Bios.Drv_Read   EQU     #55
 ; Прочитать 1 сектор с LBA=100 диска #80 в буфер
 ReadSector:
         ld      a, #80              ; диск IDE 0 master
-        ld      hl, 100             ; LBA (младшие 16 бит)
-        ld      de, 0               ; LBA (старшие 16 бит)
-        ld      ix, sector_buf      ; буфер приёмник (512 байт)
+        ld      hl, 0               ; LBA (старшие 16 бит)
+        ld      ix, 100             ; LBA (младшие 16 бит)
+        ld      de, sector_buf      ; буфер приёмник (512 байт)
         ld      b, 1                ; количество секторов
         ld      c, Bios.Drv_Read
         rst     #08
@@ -138,9 +138,9 @@ sector_buf:     ds  512
 ```asm
 ; Прочитать 8 секторов (4 КБ) начиная с LBA=0
         ld      a, #80
-        ld      hl, 0
-        ld      de, 0
-        ld      ix, bigbuf
+        ld      hl, 0               ; старшие 16 бит LBA
+        ld      ix, 0               ; младшие 16 бит LBA
+        ld      de, bigbuf
         ld      b, 8                ; 8 секторов = 4096 байт
         ld      c, Bios.Drv_Read
         rst     #08
@@ -160,15 +160,17 @@ Bios.Drv_Write  EQU     #56
 ; Записать 1 сектор на диск
 WriteSector:
         ld      a, #80
-        ld      hl, 100             ; LBA
-        ld      de, 0
-        ld      ix, source_buf
+        ld      hl, 0               ; LBA (старшие 16 бит)
+        ld      ix, 100             ; LBA (младшие 16 бит)
+        ld      de, source_buf
         ld      b, 1
         ld      c, Bios.Drv_Write
         rst     #08
         ret     nc                  ; успех
         ; ошибка
         ret
+
+source_buf:     ds  512
 ```
 
 ---
@@ -309,8 +311,8 @@ ReadMBR:
         ; Прочитать сектор 0
         ld      a, #80
         ld      hl, 0
-        ld      de, 0
-        ld      ix, mbr_buf
+        ld      ix, 0
+        ld      de, mbr_buf
         ld      b, 1
         ld      c, #55              ; DRV_READ
         rst     #08

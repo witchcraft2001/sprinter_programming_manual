@@ -238,6 +238,150 @@ DCP оставляет совместимый прямой интерфейс д
 
 ---
 
+## Низкоуровневое чтение serial mouse
+
+Если нужен не BIOS API, а сырой поток пакетов мышиного контроллера, в
+драйверах DSS используются порты:
+
+| Порт | Имя | Назначение |
+|------|-----|------------|
+| `#1B` | `CMOUSE` | статус / управляющий порт |
+| `#1A` | `DMOUSE` | байт данных |
+
+Подтверждённый паттерн из `INTMOUSE.ASM` такой:
+
+- состояние читается из `CMOUSE`;
+- после `RRCA` флаг `C=1` означает, что байт можно забирать;
+- пакет набирается чтением трёх байтов из `DMOUSE`.
+
+Это уровень драйвера. Для обычной программы безопаснее `RST #30`, но для
+низкоуровневой отладки и своих polling-циклов прямое чтение иногда удобнее.
+
+### Пример: прочитать один сырой пакет
+
+```asm
+CMOUSE  EQU #1B
+DMOUSE  EQU #1A
+
+; выход:
+;   CY=1  пакет прочитан
+;   B,C,D = три сырых байта
+;   CY=0  данных пока нет
+ReadMouseRaw3:
+        in      a, (CMOUSE)
+        rrca
+        ret     nc
+
+        in      a, (DMOUSE)
+        ld      b, a
+
+.wait2: in      a, (CMOUSE)
+        rrca
+        jr      nc, .wait2
+        in      a, (DMOUSE)
+        ld      c, a
+
+.wait3: in      a, (CMOUSE)
+        rrca
+        jr      nc, .wait3
+        in      a, (DMOUSE)
+        ld      d, a
+
+        scf
+        ret
+```
+
+В этом виде `B/C/D` содержат ещё не распакованный Microsoft Mouse-совместимый
+трёхбайтовый пакет.
+
+### Пример: распаковать `dx`, `dy` и кнопки
+
+Ниже упрощённый перенос логики `READ_M` из DSS: он собирает относительные
+смещения и выделяет кнопки.
+
+```asm
+CMOUSE  EQU #1B
+DMOUSE  EQU #1A
+
+; выход:
+;   CY=1  пакет получен
+;   E = dx (signed 8-bit)
+;   D = dy (signed 8-bit)
+;   A = buttons: bit1=right, bit0=left
+;   CY=0  данных нет или пакет неполный
+ReadMouseDelta:
+        in      a, (CMOUSE)
+        rrca
+        ret     nc
+        in      a, (DMOUSE)
+        ld      l, a
+        bit     6, a
+        ccf
+        ret     z
+
+.wait2: in      a, (CMOUSE)
+        rrca
+        jr      nc, .wait2
+        in      a, (DMOUSE)
+        ld      e, a
+        bit     6, a
+        ccf
+        ret     nz
+
+.wait3: in      a, (CMOUSE)
+        rrca
+        jr      nc, .wait3
+        in      a, (DMOUSE)
+        ld      d, a
+        bit     6, a
+        ccf
+        ret     nz
+
+        ld      a, e
+        and     #3F
+        ld      e, a
+        ld      a, l
+        and     #03
+        rrca
+        rrca
+        or      e
+        ld      e, a
+
+        ld      a, d
+        and     #3F
+        ld      d, a
+        ld      a, l
+        and     #0C
+        rrca
+        rrca
+        rrca
+        rrca
+        or      d
+        ld      d, a
+
+        ld      a, l
+        rlca
+        rlca
+        rlca
+        res     6, a
+        jr      nc, .btn
+        set     6, a
+.btn:   rlca
+        rlca
+        and     #03
+        scf
+        ret
+```
+
+Практически это означает:
+
+1. `E` и `D` можно сразу трактовать как signed relative delta.
+2. `A & 1` = левая кнопка, `A & 2` = правая.
+3. Абсолютный курсор поверх этого строится накоплением `dx/dy` в собственных
+   переменных с последующим clamp по рабочим границам.
+
+---
+
 ## Рабочий пример опроса мыши
 
 Ниже простой цикл, который корректно отслеживает новые нажатия кнопок.

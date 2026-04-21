@@ -125,6 +125,51 @@ ScanKbdByte:
         ret
 ```
 
+### Пример обработчика из `flappybird`
+
+Ниже реальный игровой паттерн: обработчик вычитывает весь FIFO контроллера,
+игнорирует `break`-последовательность `#F0` и расширительный префикс `#E0`,
+оставляя в `KeyPressed` последний make-код.
+
+```asm
+SIO_DATA_REG_A  EQU #18
+SIO_CONTROL_A   EQU #19
+
+KeysHandler:
+.loop:  in      a, (SIO_CONTROL_A)
+        bit     0, a
+        ret     z                   ; FIFO пуст
+
+        in      a, (SIO_DATA_REG_A)
+        cp      #F0
+        jr      nz, .key
+        ld      a, 1
+        ld      (.needskipkey), a
+        jr      .loop
+
+.key:   cp      #E0
+        jr      z, .skipkey
+        ld      c, 0
+.needskipkey
+        equ     $-1
+        bit     0, c
+        jr      nz, .skipkey
+        ld      (KeyPressed), a
+
+.skipkey:
+        xor     a
+        ld      (.needskipkey), a
+        jr      .loop
+
+KeyPressed:
+        db      0
+```
+
+Этот пример хорош для игр и утилит с собственным polling-loop. Если нужны
+расширенные курсорные клавиши, правый Ctrl/Alt и другие `#E0`-коды, префикс
+`#E0` уже нельзя просто отбрасывать: его нужно собирать как часть расширенной
+последовательности.
+
 ### Часто встречающиеся make-коды
 
 | Клавиша | Код |

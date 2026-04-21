@@ -35,3 +35,13 @@
   build logs plus generated `.sof/.pof` artifacts for review. PR descriptions should
   outline affected modules, commands run, and hardware tested; include screenshots or
   oscilloscope captures if timing/fmax changes are claimed.
+
+  ## External reference sources
+- You may consult the following local sibling repositories/directories for answers, platform details, and implementation ideas:
+  - `/Users/dmitry/dev/zx/sprinter/sprinter_bios`
+  - `/Users/dmitry/dev/zx/sprinter/sprinter_dss`
+  - `/Users/dmitry/dev/zx/sprinter/sprinter_ai_doc/manual`
+  - `/Users/dmitry/dev/zx/sprinter/sources/tasm_071/TASM`
+  - `/Users/dmitry/dev/zx/sprinter/sources/fformat/src/fformat_v113`
+  - `/Users/dmitry/dev/zx/sprinter/sources/fm/FM-SRC/FM`
+- Treat them as reference material only; this repository remains the source of truth for changes you make here.

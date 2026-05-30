@@ -396,13 +396,14 @@ Dss.Attrib      EQU #16
 
 ; Получить атрибуты файла
         ld      hl, filename
-        ld      a, #FF              ; #FF = прочитать, не изменять
+        ld      b, 0                ; B = 0 → GET (читать атрибуты)
         ld      c, Dss.Attrib
         rst     DssRst
         ; A = текущие атрибуты
 
 ; Установить "Read-only" + "Hidden"
         ld      hl, filename
+        ld      b, 1                ; B = 1 → SET (записать атрибуты)
         ld      a, FileAttrib.RDOnly OR FileAttrib.Hidden     ; #03
         ld      c, Dss.Attrib
         rst     DssRst

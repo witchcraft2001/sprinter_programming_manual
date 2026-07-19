@@ -28,7 +28,7 @@ main:
         ; Напечатать строку
         ld      hl, msg
         ld      b, msg_len
-        ld      e, #0F              ; атрибут: белый на чёрном
+        ld      e, #0F              ; ATTR CGA: белый на чёрном (без FLASH)
         ld      c, #85              ; LP_PRINT_LN
         rst     #08
 

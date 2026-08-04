@@ -67,17 +67,17 @@ InitPalette:
 
         ; Цвет 1 — красный
         ld      hl, 1
-        ld      e, 63 : ld d, 0 : ld a, 0
+        ld      e, 255 : ld d, 0 : ld a, 0
         ld      c, #A4 : rst #08
 
         ; Цвет 2 — зелёный
         ld      hl, 2
-        ld      e, 0 : ld d, 63 : ld a, 0
+        ld      e, 0 : ld d, 255 : ld a, 0
         ld      c, #A4 : rst #08
 
         ; Цвет 3 — синий
         ld      hl, 3
-        ld      e, 0 : ld d, 0 : ld a, 63
+        ld      e, 0 : ld d, 0 : ld a, 255
         ld      c, #A4 : rst #08
 
         ret
